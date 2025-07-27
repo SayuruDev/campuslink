@@ -11,6 +11,31 @@ function App() {
     }
   };
 
+  const schedule = {
+    Monday: ['Math', 'English'],
+    Tuesday: ['Biology', 'History'],
+    Wednesday: ['Physics'],
+    Thursday: ['Chemistry', 'Art'],
+    Friday: ['PE'],
+  };
+
+  const renderSchedule = () => {
+    return (
+      <div style={{ display: 'flex', gap: '10px', marginTop: 20 }}>
+        {Object.entries(schedule).map(([day, classes]) => (
+          <div key={day} style={{ border: '1px solid #ccc', padding: 10, minWidth: 100 }}>
+            <strong>{day}</strong>
+            <ul>
+              {classes.map((cls, idx) => (
+                <li key={idx}>{cls}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   if (!loggedIn) {
     return (
       <div style={{ padding: 20 }}>
@@ -36,6 +61,8 @@ function App() {
     <div style={{ padding: 20 }}>
       <h2>Welcome, {username}!</h2>
       <p>You are now logged in.</p>
+      <h3>Your Weekly Schedule</h3>
+      {renderSchedule()}
     </div>
   );
 }
